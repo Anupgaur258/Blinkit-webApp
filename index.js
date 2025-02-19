@@ -6,6 +6,11 @@ import cookieParser from 'cookie-parser';
 import morgan from 'morgan';
 import helmet from 'helmet';
 import connectDb from './config/connectDB.js';
+import userRouter from './route/user.route.js';
+
+import { registerUserController } from './controllers/user.controller.js';
+
+
 
 const app = express();
 
@@ -29,11 +34,12 @@ app.get('/', (req, res) => {
     });
 });
 
+app.use('/api/user', userRouter);
+
 connectDb().then(() => {
     app.listen(PORT, () => {
-        console.log("server is running ", PORT)
-    })
-}); // Ensure this is called after dotenv.config()
-app.listen(PORT, () => {
-    console.log("Server is running on port " + PORT);
+        console.log("Server is running on port " + PORT);
+    });
+}).catch(err => {
+    console.error("Failed to connect to MongoDB", err);
 });

@@ -3,8 +3,20 @@ import dotenv from 'dotenv'
 dotenv.config()
 if (process.env.RESEND_API) {
     console.log("provide RESEND_API inside dotenv file ")
-    const sendEmail = ({ name, send })
 }
+const sendEmail = ({ name, send ToggleEvent, subject, html }) => {
+    try {
+        const { data, error } = await resend.emails.send({
+            from: 'blinkit <onboarding@resend.dev>',
+            to: sendTo,
+            subject: subject,
+            html: html,
+        });
+    } catch (error) {
+        console.log(error)
+    }
+}
+
 const resend = new Resend(process.env.RESEND_API);
 
 (async function() {
@@ -21,3 +33,4 @@ const resend = new Resend(process.env.RESEND_API);
 
     console.log({ data });
 })();
+export default sendEmail
