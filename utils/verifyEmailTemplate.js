@@ -1,11 +1,11 @@
 const verifyEmailTemplate = ({ name, url }) => {
-    return ` 
-    <p> dear ${name}
-    <p > Thank you for registering Blinkit.< /p>
-
-        < a href=${url} styel= "background-color: blue; color: white; margin-top: 10px"> verify Email </a >
-            
-            
-              `
+    return `
+<p>Dear ${name}</p>    
+<p>Thank you for registering Binkeyit.</p>   
+<a href=${url} style="color:black;background :orange;margin-top : 10px,padding:20px,display:block">
+    Verify Email
+</a>
+`
 }
+
 export default verifyEmailTemplate
